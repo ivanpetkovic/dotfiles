@@ -32,6 +32,8 @@ bindsym $mod+Return exec terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
+bindsym $mod+w kill
+
 # start program launcher
 bindsym $mod+d exec --no-startup-id dmenu_recency
 
@@ -111,7 +113,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+#bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -141,20 +143,22 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 2:term
-set $ws2 1:browser
-set $ws3 3:dev
-set $ws4 4:comm
-set $ws5 5
+set $ws1 1:term
+set $ws2 2:browser
+set $ws3 3:comm
+set $ws4 4:dev
+set $ws5 5:office
 set $ws6 6
 set $ws7 7
 set $ws8 8:music
 
-workspace 1 output HDMI-0
-workspace 2 output DP-1
-workspace 8 output HDMI-0
-workspace 4 output DP-1
-workspace 3 output DP-1
+workspace "1:term" output DP-1
+workspace "2:browser" output HDMI-0
+workspace "3:comm" output HDMI-0
+workspace "4:dev" output DP-1
+#workspace 8 output HDMI-0
+#workspace 4 output DP-1
+#workspace 3 output DP-1
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -187,17 +191,14 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
-# assign [class="Thunderbird"] $ws1
+assign [class="terminal"] $ws1
 assign [class="Brave"] $ws2
 # assign [class="Pcmanfm"] $ws3
-assign [class="Slack"] $ws4
-assign [class="Viber"] $ws4
-assign [class="Signal"] $ws4
-assign [class="Teams"] $ws4
-assign [class="Youtube Music"] $ws8
-
-
-
+assign [class="Slack"] $ws3
+assign [class="Viber"] $ws3
+assign [class="Signal"] $ws3
+assign [class="Teams"] $ws3
+assign [class="Code"] $ws4
 
 
 # Open specific applications in floating mode
@@ -224,7 +225,6 @@ for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
-for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
@@ -305,7 +305,7 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec --no-startup-id autorandr --load monitori
-exec --no-startup-id setxkbmap -option 'grp:alt_shift_toggle' -layout us,rs -variant ,latin
+exec --no-startup-id setxkbmap -option 'grp:rctrl_rshift_toggle' -layout us,rs -variant intl,latin
 
 # Colors are gathered based on the documentation:
 # https://i3wm.org/docs/userguide.html#xresources
@@ -339,25 +339,23 @@ set_from_resource $term_color15    color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-	i3bar_command i3bar
-	status_command i3status
-	position bottom
-
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 #	tray_output primary
-#	tray_output eDP1
-
+	tray_output HDMI-1
+#	output DP-0
 	bindsym button4 nop
+	i3bar_command i3bar
+	status_command i3status
 	bindsym button5 nop
-#   font xft:URWGothic-Book 11
+	font xft:URWGothic-Book 16
+	workspace_buttons yes
+	workspace_min_width 100
 	strip_workspace_numbers yes
 
     colors {
         background #222D31
         statusline #F9FAF9
         separator  #454947
-
-#                      border  backgr. text
         focused_workspace  #F9FAF9 #16a085 #292F34
         active_workspace   #595B5B #353836 #FDF6E3
         inactive_workspace #595B5B #222D31 #EEE8D5
@@ -365,6 +363,16 @@ bar {
         urgent_workspace   #16a085 #FDF6E3 #E5201D
     }
 }
+
+#bar {
+#	id bar-right
+#	i3bar_command i3bar
+#	status_command i3status
+#	tray_output HDMI-1
+#	position bottom
+#	output HDMI-1
+#	font xft:URWGothic-Book 14
+#}
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
