@@ -309,7 +309,7 @@ exec --no-startup-id clipit
 exec_always --no-startup-id ~/.config/polybar/launch.sh 
 exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker i3lock -i ~/.i3/lock-screen.png
+exec --no-startup-id xautolock -time 5 -locker "i3lock -i ~/.i3/lock-screen.png"
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 # dpi change
