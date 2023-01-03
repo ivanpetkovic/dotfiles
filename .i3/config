@@ -14,7 +14,7 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 2
+default_border pixel 4
 default_floating_border normal
 
 # Hide borders
@@ -193,11 +193,12 @@ assign [class="terminal"] $ws1
 assign [class="chromium"] $ws2
 assign [class="code"] $ws3
 assign [class="nvim"] $ws3
+assign [class="neovim"] $ws3
 
 assign [class="signal"] $ws4
 assign [class="viber"] $ws4
 assign [class="Slack"] $ws4
-assign [class="Viber"] $ws4
+assign [class="ViberPC"] $ws4
 assign [class="Signal"] $ws4
 assign [class="Teams"] $ws4
 
@@ -290,7 +291,7 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym $mod+9 exec --no-startup-id blurlock
+bindsym $mod+9 exec --no-startup-id i3lock -i ~/.i3/lock-screen.png
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -305,7 +306,7 @@ exec --no-startup-id clipit
 exec_always --no-startup-id ~/.config/polybar/launch.sh 
 exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker blurlock
+exec --no-startup-id xautolock -time 10 -locker i3lock -i ~/.i3/lock-screen.png
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 # dpi change
@@ -351,7 +352,8 @@ set_from_resource $term_color15    color15
 # Theme colors
 
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #556064 #80FFF9 #FDF6E3
+  client.focused          #FF0000 #556064 #80FFF9 #FDF6E3
+#  client.focused          #556064 #556064 #80FFF9 #FDF6E3
   client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
   client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
   client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
