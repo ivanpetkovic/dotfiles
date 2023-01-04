@@ -65,7 +65,9 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-#bindsym $mod+e exec ranger
+#bindsym $mod+e exec terminal -e 'ranger'
+bindsym $mod+e exec "terminal -e 'ranger'" 
+# ;grab_focus;" && i3-msg floating enable
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
 bindsym $mod+F5 exec terminal -e 'mocp'
@@ -192,7 +194,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
 assign [class="terminal"] $ws1
-assign [class="chromium"] $ws2
+assign [class="Chromium"] $ws2
 assign [class="code"] $ws3
 assign [class="nvim"] $ws3
 assign [class="neovim"] $ws3
