@@ -159,6 +159,18 @@ set $ws6 6
 set $ws7 7
 set $ws8 8
 
+set $monitor_left DP-0
+set $monitor_right HDMI-0
+
+workspace $ws1 output $monitor_left
+workspace $ws3 output $monitor_left
+workspace $ws5 output $monitor_left
+workspace $ws7 output $monitor_left
+workspace $ws2 output $monitor_right
+workspace $ws4 output $monitor_right
+workspace $ws6 output $monitor_right
+workspace $ws8 output $monitor_right
+
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -306,18 +318,19 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
-exec_always --no-startup-id ~/.config/polybar/launch.sh 
 exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 5 -locker "i3lock -i ~/.i3/lock-screen.png"
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 # dpi change
-exec --no-startup-id xrandr --output eDP-1 --mode 2048x1152 --dpi 96 --primary
+#exec --no-startup-id xrandr --output eDP-1 --mode 2048x1152 --dpi 96 --primary
 
-exec --no-startup-id autorandr --load monitori
+exec --no-startup-id xrandr --output DVI-D-0 --off --output DP-0 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-0 --mode 1920x1080 --pos 2560x0 --rotate normal --output DP-2 --off --output DP-3 --off --output DP-4 --off --output DP-5 --off
+#exec --no-startup-id autorandr --load monitori
 exec_always --no-startup-id setxkbmap -layout us,rs -variant intl,latin -option grp:win_space_toggle
 
+exec_always --no-startup-id ~/.config/polybar/launch.sh 
 #exec --no-startup-id i3-msg ´workspace 4:comm; exec /usr/bin/viber´;
 #exec --no-startup-id i3-msg ´workspace 2:net; exec /usr/bin/chromium´;
 
