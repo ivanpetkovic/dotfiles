@@ -227,13 +227,8 @@ vim.opt.termguicolors = true
 -- OR setup with some options
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
-  open_on_setup = true,
   view = {
-    width = 30,
-    auto_resize = true,
-    --adaptive_size = true,
-    --
-    --
+    adaptive_size = true,
     mappings = {
       list = {
         { key = "u", action = "dir_up" },
@@ -333,9 +328,9 @@ require('nvim-treesitter.configs').setup {
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
---vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
-vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
+
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
