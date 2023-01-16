@@ -205,9 +205,12 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 # assign [class="Thunderbird"] $ws1
 assign [class="terminal"] $ws1
 assign [class="Chromium"] $ws2
+
 assign [class="code"] $ws3
 assign [class="nvim"] $ws3
 assign [class="neovim"] $ws3
+assign [class="beekeeper-studio"] $ws3
+
 
 assign [class="signal"] $ws4
 assign [class="viber"] $ws4
