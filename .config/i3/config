@@ -96,6 +96,8 @@ bindsym $alt+Control+l 			exec --no-startup-id "betterlockscreen --lock"
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+focus_follows_mouse no
+
 # kill focused window
 bindsym $mod+w kill
 
@@ -304,7 +306,7 @@ bindsym $mod+Shift+g mode "$mode_gaps"
 ##-- Workspace Rules ------------------------
 assign [class="Lxappearance|Nitrogen"] 6
 assign [class="Pavucontrol|Xfce4-power-manager-settings"] 6
-# assign [class="Thunderbird"] $ws1
+
 assign [class="terminal"] $ws1
 assign [class="Chromium"] $ws2
 
@@ -322,6 +324,7 @@ assign [class="Signal"] $ws4
 assign [class="Teams"] $ws4
 assign [class="teams-for-linux"] $ws4
 
+assign [class="Thunderbird"] $ws5
 ##-- Window Rules ------------------------
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
