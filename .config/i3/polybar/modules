@@ -365,7 +365,7 @@ time = %I:%M %p
 
 ; if `date-alt` or `time-alt` is defined, clicking
 ; the module will toggle between formats
-;;date-alt = %A, %d %B %Y
+date = %A, %d %B %Y
 #time-alt = %d/%m/%Y%
 time-alt = %b %d, %G
 
@@ -382,7 +382,7 @@ format-background = ${color.BGL}
 ;   %date%
 ;   %time%
 ; Default: %date%
-label = %time%
+label = %date% %time%
 label-font = 4
 label-foreground = ${color.CYAN}
 

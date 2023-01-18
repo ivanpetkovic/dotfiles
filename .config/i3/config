@@ -66,7 +66,7 @@ bindsym $mod+n 					exec --no-startup-id ~/.config/i3/rofi/bin/network_menu
 bindsym $mod+x 					exec --no-startup-id ~/.config/i3/rofi/bin/powermenu
 bindsym $mod+m 					exec --no-startup-id ~/.config/i3/rofi/bin/mpd
 bindsym $mod+s 					exec --no-startup-id ~/.config/i3/rofi/bin/screenshot
-bindsym $mod+r 					exec --no-startup-id ~/.config/i3/rofi/bin/asroot
+bindsym $mod+Shift+r 					exec --no-startup-id ~/.config/i3/rofi/bin/asroot
 bindsym $mod+Shift+w 					exec --no-startup-id ~/.config/i3/rofi/bin/windows
 
 # -- Function keys --
@@ -84,9 +84,9 @@ bindsym XF86AudioStop 			exec --no-startup-id "mpc stop"
 # -- Screenshots --
 bindsym Print 					exec --no-startup-id "~/.config/i3/bin/i3screenshot.sh --now"
 bindsym $mod+Print 				exec --no-startup-id "~/.config/i3/bin/i3screenshot.sh --in5"
-bindsym Shift+Print 			exec --no-startup-id "~/.config/i3/bin/i3screenshot.sh --in10"
+#bindsym Shift+Print 			exec --no-startup-id "~/.config/i3/bin/i3screenshot.sh --in10"
 bindsym Control+Print 			exec --no-startup-id "~/.config/i3/bin/i3screenshot.sh --win"
-bindsym $mod+Control+Print 		exec --no-startup-id "~/.config/i3/bin/i3screenshot.sh --area"
+bindsym Shift+Print 		exec --no-startup-id "~/.config/i3/bin/i3screenshot.sh --area"
 
 # -- i3wm --
 
@@ -247,7 +247,7 @@ mode "Resize" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
-bindsym $mod+Shift+r mode "Resize"
+bindsym $mod+r mode "Resize"
 
 mode "Move" {
         # These bindings trigger as soon as you enter the Move mode
