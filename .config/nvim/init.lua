@@ -59,7 +59,8 @@ require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
-  use 'navarasu/onedark.nvim' -- Theme inspired by Atom
+  --use 'navarasu/onedark.nvim' -- Theme inspired by Atom
+  use 'NLKNguyen/papercolor-theme'
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
@@ -69,7 +70,8 @@ require('packer').startup(function(use)
       requires = 'antoinemadec/FixCursorHold.nvim',
   } 
   use 'preservim/nerdtree'
-  use 'voldikss/vim-floaterm'
+  use 'voldikss/vim-floaterm' -- floating terminal
+  use 'glepnir/dashboard-nvim' -- welcome screen
 -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
 
@@ -145,7 +147,8 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme onedark]]
+vim.o.background = 'dark'
+vim.cmd [[colorscheme PaperColor]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -170,6 +173,7 @@ vim.keymap.set('n', '<leader>q', ':qa<CR>')
 map('', '<leader>c', '"+y') 
 map('n', '<leader>t', ':FloatermToggle term1 --key=<root> --title=NinjaTerm --cmd="cd"<CR>')
 map('t', '<leader>t', '<C-\\><C-n>:FloatermToggle<CR>')
+map('n', '<leader>b', ':NERDTreeFromBookmark ')
 
 -- Remap for dealing with werd wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -205,6 +209,7 @@ require('Comment').setup()
 require('indent_blankline').setup {
   char = '┊',
   show_trailing_blankline_indent = false,
+  filetype_exclude = { "dashboard" } 
 }
 
 -- Gitsigns
@@ -418,6 +423,9 @@ local servers = {
     },
   },
 }
+
+-- Setup welcome screen dashboard
+require('dash')
 
 -- Setup neovim lua configuration
 require('neodev').setup()
