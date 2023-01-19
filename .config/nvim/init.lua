@@ -54,30 +54,29 @@ require('packer').startup(function(use)
       }
     end
   }
-  use {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons', -- optional, for file icons
-    },
-    tag = 'nightly' -- optional, updated every week. (see issue #1193)
-  }
-  -- Git related plugins
+   
+ -- Git related plugins
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
-
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
-
-  -- Fuzzy Finder (files, lsp, etc)
+  use { -- Displays lightbuld when action is possible
+      'kosayoda/nvim-lightbulb',
+      requires = 'antoinemadec/FixCursorHold.nvim',
+  } 
+  use 'preservim/nerdtree'
+  use 'voldikss/vim-floaterm'
+-- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
-
+  -- should be at the bottom of loaded plugins
+  use 'ryanoasis/vim-devicons'
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
   if has_plugins then
@@ -102,6 +101,12 @@ if is_bootstrap then
   return
 end
 
+local function map(mode, lhs, rhs, opts)
+  local options = {noremap = true}
+  if opts then options = vim.tbl_extend('force', options, opts) end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
 -- Automatically source and re-compile packer whenever you save this init.lua
 local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
@@ -112,6 +117,8 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
+
+vim.opt.encoding="utf-8"
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -153,8 +160,18 @@ vim.g.maplocalleader = ' '
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+map('n', '<C-h>', '<C-w>h')
+map('n', '<C-l>', '<C-w>l')
+map('n', '<C-j>', '<C-w>j')
+map('n', '<C-k>', '<C-w>k')
+vim.keymap.set('n', '<leader>q', ':qa<CR>')
+-- Save session to vim-startify and quit all
+--vim.keymap.set('n', '<leader>q', ':SSave <bar> :qa<CR>')
+map('', '<leader>c', '"+y') 
+map('n', '<leader>t', ':FloatermToggle term1 --key=<root> --title=NinjaTerm --cmd="cd"<CR>')
+map('t', '<leader>t', '<C-\\><C-n>:FloatermToggle<CR>')
 
--- Remap for dealing with word wrap
+-- Remap for dealing with werd wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
@@ -214,6 +231,20 @@ require('telescope').setup {
     },
   },
 }
+
+-- [[ Confiure NerdTree ]]
+vim.cmd [[
+  autocmd VimEnter * NERDTree | wincmd p
+  let g:NERDTreeMinimalUI = 0
+  let g:NERDTreeShowBookmarks = 1
+]]
+
+-- [[ Confiure lightblub ]]
+vim.cmd [[
+  autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()
+]]
+
+
 -- examples for your init.lua
 
 -- disable netrw at the very start of your init.lua (strongly advised)
@@ -223,30 +254,6 @@ vim.g.loaded_netrwPlugin = 1
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
-
--- OR setup with some options
-require("nvim-tree").setup({
-  sort_by = "case_sensitive",
-  open_on_setup = true,
-  view = {
-    width = 30,
-    auto_resize = true,
-    --adaptive_size = true,
-    --
-    --
-    mappings = {
-      list = {
-        { key = "u", action = "dir_up" },
-      },
-    },
-  },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
-})
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
@@ -334,8 +341,19 @@ require('nvim-treesitter.configs').setup {
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 --vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
-vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
+--vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+
+
+-- NERDTree bindings
+vim.keymap.set('n', '<C-t>', ":NERDTreeToggle<CR>")
+vim.keymap.set('n', '<leader>n',  ":NERDTreeFocus<CR>")
+vim.keymap.set('n', '<leader>nf',  ":NERDTreeFind<CR>")
+
+--vim.api.nvim_create_autocmd('StartNERDTree', {
+--  command = 'NERDTree'
+--})
+--vim.cmd "autocmd VimEnter * NERDTree"
+
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
