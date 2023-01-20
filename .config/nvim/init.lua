@@ -65,6 +65,7 @@ require('packer').startup(function(use)
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
+  use 'ap/vim-buftabline'
   use { -- Displays lightbuld when action is possible
       'kosayoda/nvim-lightbulb',
       requires = 'antoinemadec/FixCursorHold.nvim',
@@ -121,6 +122,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 -- See `:help vim.o`
 
 vim.opt.encoding="utf-8"
+vim.opt.hidden = true;
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -173,7 +175,10 @@ vim.keymap.set('n', '<leader>q', ':qa<CR>')
 map('', '<leader>c', '"+y') 
 map('n', '<leader>t', ':FloatermToggle term1 --key=<root> --title=NinjaTerm --cmd="cd"<CR>')
 map('t', '<leader>t', '<C-\\><C-n>:FloatermToggle<CR>')
-map('n', '<leader>b', ':NERDTreeFromBookmark ')
+map('n', '<leader>nb', ':NERDTreeFromBookmark ')
+map('n', '<C-M>', ':bnext<CR>')
+map('n', '<C-N>', ':bprev<CR>')
+map('n', '<leader>b', ':b ')
 
 -- Remap for dealing with werd wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })

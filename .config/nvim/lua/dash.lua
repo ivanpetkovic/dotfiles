@@ -11,7 +11,7 @@ db.preview_file_width = 40
 db.custom_center = {
 	{icon = '  ',
 	desc = 'Open from Bookmark                        ',
-	shortcut = 'SPC b <name>'},
+	shortcut = 'SPC n b <name>'},
 	{icon = '  ',
 	desc = 'Search  File                              ',
 	action = 'Telescope find_files find_command=rg,--hidden,--files',
