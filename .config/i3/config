@@ -170,12 +170,12 @@ set $monitor_left DP-0
 set $monitor_right HDMI-0
 
 workspace $ws1 output $monitor_left
-workspace $ws3 output $monitor_left
-workspace $ws5 output $monitor_left
-workspace $ws7 output $monitor_left
-workspace $ws2 output $monitor_right
+workspace $ws2 output $monitor_left
+workspace $ws3 output $monitor_right
 workspace $ws4 output $monitor_right
+workspace $ws5 output $monitor_left
 workspace $ws6 output $monitor_right
+workspace $ws7 output $monitor_left
 workspace $ws8 output $monitor_right
 
 # switch to workspace
@@ -308,13 +308,13 @@ assign [class="Lxappearance|Nitrogen"] 6
 assign [class="Pavucontrol|Xfce4-power-manager-settings"] 6
 
 assign [class="terminal"] $ws1
-assign [class="Chromium"] $ws2
 
-assign [class="code"] $ws3
-assign [class="nvim"] $ws3
-assign [class="neovim"] $ws3
-assign [class="beekeeper-studio"] $ws3
+assign [class="code"] $ws2
+assign [class="nvim"] $ws2
+assign [class="neovim"] $ws2
+assign [class="beekeeper-studio"] $ws2
 
+assign [class="Chromium"] $ws3
 
 assign [class="signal"] $ws4
 assign [class="viber"] $ws4
