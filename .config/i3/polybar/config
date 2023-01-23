@@ -139,7 +139,8 @@ font-4 = "archcraft:size=14;4"
 modules-left = menu dot LD i3 RD dot LD
 # mpd RD sep song
 modules-center = date 
-modules-right = volume dot LD RD dot xkeyboard dot sysmenu
+modules-right = pulseaudio-control-output dot LD RD dot xkeyboard dot sysmenu
+# modules-right = volume dot LD RD dot xkeyboard dot sysmenu
 
 # Alternate
 ;modules-left = openbox 2LD cpu 3LD memory 4LD filesystem 5LD
