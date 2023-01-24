@@ -203,7 +203,7 @@ bindsym $mod+Ctrl+9 move container to workspace number $ws9
 # bindsym $mod+Ctrl+0 move container to workspace number $ws10
 
 # quit i3 session
-bindsym Control+Shift+q exit
+# bindsym Control+Shift+q exit
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -221,9 +221,9 @@ mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
     bindsym s exec --no-startup-id i3exit suspend, mode "default"
     bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym e exec --no-startup-id exit
     bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym r exec --no-startup-id reboot
     bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
     # exit system mode: "Enter" or "Escape"
@@ -325,7 +325,11 @@ assign [class="Signal"] $ws4
 assign [class="Teams"] $ws4
 assign [class="teams-for-linux"] $ws4
 
-assign [class="Thunderbird"] $ws5
+assign [class="thunderbird"] $ws5
+assign [class="Mail"] $ws5
+
+assign [class="org.remmina.Remmina"] $ws6
+
 ##-- Window Rules ------------------------
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
