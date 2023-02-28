@@ -91,7 +91,7 @@ bindsym Shift+Print 		exec --no-startup-id "~/.config/i3/bin/i3screenshot.sh --a
 # -- i3wm --
 
 # Lockscreen
-bindsym $alt+Control+l 			exec --no-startup-id "betterlockscreen --lock"
+bindsym $mod+l 			exec --no-startup-id "betterlockscreen --lock"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -102,10 +102,10 @@ focus_follows_mouse no
 bindsym $mod+w kill
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+#bindsym $mod+j focus left
+#bindsym $mod+k focus down
+#bindsym $mod+l focus up
+#bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
