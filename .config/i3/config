@@ -91,7 +91,7 @@ bindsym Shift+Print 		exec --no-startup-id "~/.config/i3/bin/i3screenshot.sh --a
 # -- i3wm --
 
 # Lockscreen
-bindsym $alt+Control+l 			exec --no-startup-id "betterlockscreen --lock"
+bindsym $mod+l 			exec --no-startup-id "betterlockscreen --lock"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -102,10 +102,10 @@ focus_follows_mouse no
 bindsym $mod+w kill
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+#bindsym $mod+j focus left
+#bindsym $mod+k focus down
+#bindsym $mod+l focus up
+#bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -140,7 +140,7 @@ bindsym $mod+Shift+x layout tabbed
 # bindsym $mod+Shift+c layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+space floating toggle
+#bindsym $mod+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+Shift+space focus mode_toggle
@@ -304,6 +304,9 @@ mode "$mode_gaps" {
 bindsym $mod+Shift+g mode "$mode_gaps"
 
 ##-- Workspace Rules ------------------------
+
+# kucaj xprop i klikni na prozor da saznas ime klase WM_CLASS
+
 assign [class="Lxappearance|Nitrogen"] 6
 assign [class="Pavucontrol|Xfce4-power-manager-settings"] 6
 
@@ -316,6 +319,7 @@ assign [class="neovim"] $ws2
 assign [class="beekeeper-studio"] $ws2
 
 assign [class="Chromium"] $ws3
+assign [class="brave-browser"] $ws3
 
 assign [class="signal"] $ws4
 assign [class="viber"] $ws4
@@ -325,10 +329,11 @@ assign [class="Signal"] $ws4
 assign [class="Teams"] $ws4
 assign [class="teams-for-linux"] $ws4
 
-assign [class="thunderbird"] $ws5
+assign [class="Mailspring"] $ws5
 assign [class="Mail"] $ws5
 
 assign [class="org.remmina.Remmina"] $ws6
+assign [class="notion-app"] $ws6
 
 ##-- Window Rules ------------------------
 for_window [window_role="pop-up"] floating enable

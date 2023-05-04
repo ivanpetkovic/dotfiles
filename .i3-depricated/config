@@ -304,6 +304,9 @@ mode "$mode_gaps" {
 bindsym $mod+Shift+g mode "$mode_gaps"
 
 ##-- Workspace Rules ------------------------
+
+# kucaj xprop i klikni na prozor da saznas ime klase WM_CLASS
+
 assign [class="Lxappearance|Nitrogen"] 6
 assign [class="Pavucontrol|Xfce4-power-manager-settings"] 6
 
@@ -316,6 +319,7 @@ assign [class="neovim"] $ws2
 assign [class="beekeeper-studio"] $ws2
 
 assign [class="Chromium"] $ws3
+assign [class="brave-browser"] $ws3
 
 assign [class="signal"] $ws4
 assign [class="viber"] $ws4
@@ -325,10 +329,11 @@ assign [class="Signal"] $ws4
 assign [class="Teams"] $ws4
 assign [class="teams-for-linux"] $ws4
 
-assign [class="thunderbird"] $ws5
+assign [class="Mailspring"] $ws5
 assign [class="Mail"] $ws5
 
 assign [class="org.remmina.Remmina"] $ws6
+assign [class="notion-app"] $ws6
 
 ##-- Window Rules ------------------------
 for_window [window_role="pop-up"] floating enable
