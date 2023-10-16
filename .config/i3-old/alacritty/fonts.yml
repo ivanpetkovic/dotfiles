@@ -1,7 +1,6 @@
 ## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
-##
-## Font configuration
 
+## Font configuration
 font:
   # Normal (roman) font face
   normal:
@@ -24,7 +23,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 12
+  size: 13
 
   # Offset
   #offset:
