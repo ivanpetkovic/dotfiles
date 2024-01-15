@@ -14,6 +14,7 @@ require("lazy").setup({
       build = "npm global add live-server",
       config = true,
     },
+    { "echasnovski/mini.pairs", enabled = false },
     { "ellisonleao/gruvbox.nvim" },
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extras modules here
