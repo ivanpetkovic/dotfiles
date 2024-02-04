@@ -15,7 +15,13 @@ require("lazy").setup({
       config = true,
     },
     { "echasnovski/mini.pairs", enabled = false },
-    { "ellisonleao/gruvbox.nvim" },
+    { "ellisonleao/gruvbox.nvim", opts = {
+        contrast = "hard",
+      } 
+    },
+    {   'tpope/vim-dadbod' },
+    { 'kristijanhusak/vim-dadbod-ui' },
+
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extras modules here
     { import = "lazyvim.plugins.extras.lang.typescript" },
