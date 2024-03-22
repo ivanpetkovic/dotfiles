@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:usr/bin:$HOME/.cargo/bin:$PATH
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -70,7 +70,7 @@ zstyle ':omz:update' mode disabled  # disable automatic updates
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -120,6 +120,7 @@ add-zsh-hook -Uz precmd rehash_precmd
 # omz
 alias zshconfig="geany ~/.zshrc"
 alias ohmyzsh="thunar ~/.oh-my-zsh"
+alias sqlx="cargo sqlx"
 
 # ls
 alias l='ls -lh'
@@ -129,6 +130,8 @@ alias lm='ls -m'
 alias lr='ls -R'
 alias lg='ls -l --group-directories-first'
 
+alias cdd="cd ~ && cd \$(fd -t d | fzf)"
+
 # git
 alias gcl='git clone --depth 1'
 alias gi='git init'
@@ -136,5 +139,11 @@ alias ga='git add'
 alias gc='git commit -m'
 alias gp='git push origin master'
 
-[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
+# export FZF_DEFAULT_OPTS="--preview 'bat --color=always {}'" 
+export FZF_DEFAULT_COMMAND="fd --hidden --type f"
+export PATH=~/.npm-global/bin:$PATH
+export PATH=$PATH:/home/ivan/.local/bin
 
+[[ -s /home/ivan/.autojump/etc/profile.d/autojump.sh ]] && source /home/ivan/.autojump/etc/profile.d/autojump.sh
+
+	autoload -U compinit && compinit -u
